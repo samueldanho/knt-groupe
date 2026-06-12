@@ -1,0 +1,62 @@
+/* KNT Groupe – Brand color overrides */
+:root {
+  --primary-color-1: #CC2828;
+  --knt-red: #CC2828;
+  --knt-red-dark: #A81F1F;
+  --knt-navy: #1B2A5C;
+  --knt-navy-light: #2A3F7E;
+  --body-color: #f5f5f5;
+}
+
+/* Boutons principaux → rouge KNT */
+.build_button {
+  background: var(--knt-red) !important;
+  border-color: var(--knt-red) !important;
+  color: #fff !important;
+}
+.build_button:hover {
+  background: var(--knt-red-dark) !important;
+  border-color: var(--knt-red-dark) !important;
+}
+
+/* Accents couleur principale → rouge KNT */
+.subtitle { color: var(--knt-red) !important; }
+.more_btn { color: var(--knt-red) !important; }
+.more_btn:hover { color: var(--knt-red-dark) !important; }
+
+/* Header nav active/hover */
+.header__area-menubar-center-menu ul li a:hover,
+.header__area-menubar-center-menu ul li.current-menu-item > a { color: var(--knt-red) !important; }
+
+/* Preloader spinner */
+.spinner-bounce { background: var(--knt-red) !important; }
+
+/* Scroll-up button */
+.scroll-up path { stroke: var(--knt-red) !important; }
+
+/* Footer subscribe button */
+.subscribe__area-form button { background: var(--knt-red) !important; }
+
+/* Services items accent */
+.services__one-item i,
+.services__one-item .more_btn { color: var(--knt-red) !important; }
+
+/* Portfolio item arrow */
+.portfolio__two-item-content a i { color: var(--knt-red) !important; }
+
+/* FAQ icon */
+.faq-item h5.icon::after { border-color: var(--knt-red) !important; color: var(--knt-red) !important; }
+
+/* Breadcrumb separator */
+.breadcrumb__area-content ul li i { color: var(--knt-red) !important; }
+
+/* Contact icon */
+.contact__area-left-contact-item-icon i { color: var(--knt-red) !important; }
+
+/* Footer location icon */
+.footer__two-widget-location-item-icon i { color: var(--knt-red) !important; }
+
+/* Logo max height in header */
+.header__area-menubar-left-logo img { max-height: 50px; width: auto; }
+.header__area-menubar-right-sidebar-popup-logo img { max-height: 55px; width: auto; }
+.menu__bar-popup-top .logo img { max-height: 45px; width: auto; }

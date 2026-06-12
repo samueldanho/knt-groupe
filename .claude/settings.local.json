@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"c:\\\\Users\\\\samue\\\\Downloads\\\\buildgo-construction-building-html-template-2026-03-16-16-26-39-utc\\\\buildgohtml\")",
+      "Read(//c/Users/samue/Downloads/buildgo-construction-building-html-template-2026-03-16-16-26-39-utc/buildgohtml/**)",
+      "Bash(findstr /n \"banner__two\" \"c:\\\\Users\\\\samue\\\\Downloads\\\\buildgo-construction-building-html-template-2026-03-16-16-26-39-utc\\\\buildgohtml\\\\main-file\\\\assets\\\\sass\\\\style.css\")",
+      "Bash(powershell -Command \"Get-Content 'c:\\\\Users\\\\samue\\\\Downloads\\\\buildgo-construction-building-html-template-2026-03-16-16-26-39-utc\\\\buildgohtml\\\\main-file\\\\assets\\\\sass\\\\style.css' | Select-Object -First 80\")",
+      "Bash(dir \"c:\\\\Users\\\\samue\\\\Downloads\\\\buildgo-construction-building-html-template-2026-03-16-16-26-39-utc\\\\buildgohtml\\\\main-file\\\\assets\\\\img\\\\btp\")",
+      "PowerShell(gh auth status)"
+    ]
+  }
+}

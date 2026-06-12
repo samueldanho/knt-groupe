@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KNT Groupe – BTP, Gestion immobilière & Électrification. Solutions sur mesure alliant précision technique et respect des délais. Abidjan, Côte d'Ivoire.">
+  <meta name="keywords" content="BTP Abidjan, travaux publics Côte d'Ivoire, électrification, gestion immobilière, KNT Groupe">
+  <title>KNT Groupe – BTP & Énergie | Abidjan</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C8A456;
+      --gold-light: #E2C07A;
+      --dark: #0D0D0D;
+      --dark-2: #141414;
+      --dark-3: #1C1C1C;
+      --dark-4: #242424;
+      --grey: #8A8A8A;
+      --light: #F5F0E8;
+      --white: #FFFFFF;
+      --radius: 4px;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+      --topbar-h: 40px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s ease, width 0.2s, height 0.2s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width 0.3s, height 0.3s, opacity 0.3s;
+      opacity: 0.6;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+      height: var(--topbar-h);
+      background: var(--dark-3);
+      border-bottom: 1px solid rgba(200,164,86,0.15);
+      font-size: 13px;
+      color: var(--grey);
+      transition: transform 0.3s ease;
+    }
+    .topbar.hidden { transform: translateY(-100%); }
+    .topbar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      height: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .topbar a { color: var(--grey); text-decoration: none; transition: color var(--transition); }
+    .topbar a:hover { color: var(--gold); }
+    .topbar-left { display: flex; gap: 24px; align-items: center; }
+    .topbar-right { display: flex; gap: 16px; align-items: center; }
+    .topbar-icon { display: flex; align-items: center; gap: 6px; }
+    .topbar-icon svg { width: 14px; height: 14px; fill: var(--gold); flex-shrink: 0; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; left: 0; right: 0; z-index: 1000;
+      background: transparent;
+      top: var(--topbar-h);
+      transition: background var(--transition), box-shadow var(--transition), top 0.3s ease;
+    }
+    nav.scrolled {
+      top: 0;
+      background: rgba(13,13,13,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 40px rgba(0,0,0,0.5);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-img { height: 44px; width: auto; }
+    .logo-box {
+      width: 44px; height: 44px;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px; color: var(--dark);
+      letter-spacing: 1px;
+      clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%);
+    }
+    .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); letter-spacing: 3px; }
+    .logo-sub { font-size: 10px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-top: -4px; display: block; }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--dark) !important;
+      padding: 10px 24px;
+      font-weight: 700 !important;
+      letter-spacing: 2px;
+      clip-path: polygon(0 0, 90% 0, 100% 25%, 100% 100%, 10% 100%, 0 75%);
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: scale(1.03) !important; }
+
+    /* Mobile burger */
+    .nav-burger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .nav-burger span {
+      width: 26px; height: 2px;
+      background: var(--white);
+      transition: all var(--transition);
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: calc(var(--topbar-h) + 72px);
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background-image: url('assets/img/banner/banner-1.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.08;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(200,164,86,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(200,164,86,0.08) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,164,86,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,164,86,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-shape {
+      position: absolute; right: -100px; top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px;
+      border: 1px solid rgba(200,164,86,0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-shape::before {
+      content: ''; position: absolute; inset: 60px;
+      border: 1px solid rgba(200,164,86,0.06); border-radius: 50%;
+    }
+    .hero-shape::after {
+      content: ''; position: absolute; inset: 120px;
+      border: 1px solid rgba(200,164,86,0.10); border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(200,164,86,0.12);
+      border: 1px solid rgba(200,164,86,0.3);
+      padding: 8px 18px;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 28px;
+      animation: fadeInUp 0.8s ease both;
+    }
+    .hero-badge span { width: 20px; height: 1px; background: var(--gold); }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 8vw, 100px);
+      line-height: 0.92; color: var(--white);
+      letter-spacing: 2px;
+      animation: fadeInUp 0.8s ease 0.15s both;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; display: block; }
+    .hero-desc {
+      margin-top: 28px; margin-bottom: 40px;
+      font-size: 17px; line-height: 1.7;
+      color: rgba(245,240,232,0.7);
+      max-width: 480px; font-weight: 300;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.45s both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--dark);
+      text-decoration: none; padding: 14px 32px;
+      font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(200,164,86,0.4); color: var(--light);
+      text-decoration: none; padding: 14px 32px;
+      font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      transition: all var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(200,164,86,0.08); color: var(--gold); }
+
+    .hero-cards {
+      display: flex; flex-direction: column; gap: 16px;
+      animation: fadeInRight 1s ease 0.4s both;
+    }
+    .hero-card {
+      background: rgba(28,28,28,0.85);
+      border: 1px solid rgba(200,164,86,0.12);
+      padding: 24px 28px;
+      display: flex; align-items: flex-start; gap: 20px;
+      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+      position: relative;
+      backdrop-filter: blur(6px);
+    }
+    .hero-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--gold);
+      transform: scaleY(0); transition: transform var(--transition);
+      transform-origin: bottom;
+    }
+    .hero-card:hover { border-color: rgba(200,164,86,0.35); transform: translateX(4px); background: var(--dark-4); }
+    .hero-card:hover::before { transform: scaleY(1); }
+    .hero-card-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: rgba(200,164,86,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-card-icon svg { width: 24px; height: 24px; fill: var(--gold); }
+    .hero-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--white); margin-bottom: 4px; text-transform: uppercase; }
+    .hero-card-desc { font-size: 13px; color: var(--grey); line-height: 1.5; }
+
+    /* ─── STATS ─── */
+    .hero-stats {
+      background: var(--dark-3);
+      border-top: 1px solid rgba(200,164,86,0.12);
+      border-bottom: 1px solid rgba(200,164,86,0.12);
+      padding: 40px 0;
+    }
+    .hero-stats-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(200,164,86,0.08);
+    }
+    .stat-item {
+      background: var(--dark-3); padding: 32px 24px;
+      text-align: center;
+      transition: background var(--transition);
+    }
+    .stat-item:hover { background: var(--dark-4); }
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px; line-height: 1;
+      color: var(--gold); letter-spacing: 2px;
+    }
+    .stat-unit { color: var(--grey); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 100px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    h2.section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+      color: var(--white); letter-spacing: 1px; margin-bottom: 20px;
+    }
+    p.section-desc {
+      font-size: 16px; line-height: 1.8;
+      color: rgba(245,240,232,0.6);
+      font-weight: 300; max-width: 560px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--dark-2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-main {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover;
+      filter: grayscale(20%) contrast(1.1);
+      clip-path: polygon(0 0, 90% 0, 100% 5%, 100% 100%, 10% 100%, 0 95%);
+      display: block;
+    }
+    .about-badge-float {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--gold); padding: 24px; text-align: center;
+      clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%);
+      z-index: 2;
+    }
+    .about-badge-number { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--dark); line-height: 1; }
+    .about-badge-label { font-size: 11px; color: var(--dark); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .about-content { padding-left: 20px; }
+    .about-list { list-style: none; margin: 32px 0; display: flex; flex-direction: column; gap: 16px; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px; background: var(--dark-3);
+      border-left: 3px solid var(--gold);
+      font-size: 14px; color: rgba(245,240,232,0.8); line-height: 1.5;
+    }
+    .about-list li strong { color: var(--white); display: block; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+    .about-list li svg { width: 20px; height: 20px; fill: var(--gold); flex-shrink: 0; margin-top: 2px; }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--dark); }
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px; gap: 40px; flex-wrap: wrap;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(200,164,86,0.08);
+    }
+    .service-card {
+      background: var(--dark-2); padding: 0;
+      position: relative; overflow: hidden;
+      transition: background var(--transition);
+    }
+    .service-card-img {
+      width: 100%; height: 220px; object-fit: cover;
+      display: block;
+      filter: grayscale(30%) brightness(0.75);
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
+    .service-card:hover .service-card-img { filter: grayscale(0%) brightness(0.9); transform: scale(1.04); }
+    .service-card-body { padding: 36px 32px; }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,164,86,0.04), transparent);
+      opacity: 0; transition: opacity var(--transition);
+      pointer-events: none;
+    }
+    .service-card:hover { background: var(--dark-3); }
+    .service-card:hover::after { opacity: 1; }
+    .service-number {
+      font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1;
+      color: rgba(200,164,86,0.07);
+      position: absolute; top: 20px; right: 24px; pointer-events: none;
+      transition: color var(--transition);
+    }
+    .service-card:hover .service-number { color: rgba(200,164,86,0.12); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: rgba(200,164,86,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+      clip-path: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 20% 100%, 0 80%);
+      transition: background var(--transition);
+    }
+    .service-card:hover .service-icon { background: rgba(200,164,86,0.2); }
+    .service-icon svg { width: 28px; height: 28px; fill: var(--gold); }
+    .service-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--white); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+    }
+    .service-card p { font-size: 14px; line-height: 1.75; color: rgba(245,240,232,0.6); font-weight: 300; }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 24px;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      transition: gap var(--transition), color var(--transition);
+    }
+    .service-link:hover { gap: 14px; color: var(--gold-light); }
+    .service-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ─── EXPERTISE ─── */
+    #expertise {
+      background: var(--dark-3);
+      position: relative; overflow: hidden;
+    }
+    #expertise::before {
+      content: 'KNT';
+      position: absolute; right: -60px; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif; font-size: 280px; line-height: 1;
+      color: rgba(200,164,86,0.03); pointer-events: none; letter-spacing: -10px;
+    }
+    .expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .expertise-items { display: flex; flex-direction: column; gap: 0; }
+    .expertise-item {
+      padding: 28px 0; border-bottom: 1px solid rgba(200,164,86,0.08);
+      display: flex; align-items: flex-start; gap: 24px;
+      transition: padding-left var(--transition);
+    }
+    .expertise-item:first-child { border-top: 1px solid rgba(200,164,86,0.08); }
+    .expertise-item:hover { padding-left: 8px; }
+    .expertise-item-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px; color: var(--gold); letter-spacing: 2px; flex-shrink: 0; margin-top: 3px;
+    }
+    .expertise-item-content h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px; font-weight: 700; text-transform: uppercase;
+      color: var(--white); letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .expertise-item-content p { font-size: 14px; color: rgba(245,240,232,0.55); line-height: 1.6; font-weight: 300; }
+    .expertise-visual { display: flex; flex-direction: column; gap: 20px; }
+    .skill-bar-wrap {}
+    .skill-bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--light); margin-bottom: 8px;
+    }
+    .skill-bar-label span { color: var(--gold); }
+    .skill-bar-track { height: 3px; background: rgba(200,164,86,0.1); overflow: hidden; }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      width: 0;
+      transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .expertise-cert {
+      background: var(--dark-4); border: 1px solid rgba(200,164,86,0.15);
+      padding: 24px; display: flex; align-items: center; gap: 20px;
+    }
+    .cert-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: rgba(200,164,86,0.12);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cert-icon svg { width: 26px; height: 26px; fill: var(--gold); }
+    .cert-text h5 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-text p { font-size: 13px; color: var(--grey); }
+
+    /* ─── PROJETS ─── */
+    #projets { background: var(--dark-2); }
+    .projets-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 48px; flex-wrap: wrap; gap: 24px;
+    }
+    .projet-filters { display: flex; gap: 4px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 8px 20px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      background: transparent;
+      border: 1px solid rgba(200,164,86,0.2);
+      color: var(--grey); cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gold); border-color: var(--gold); color: var(--dark);
+    }
+    .projets-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2px; background: rgba(200,164,86,0.06);
+    }
+    .projet-card {
+      position: relative; overflow: hidden; aspect-ratio: 16/10;
+      background: var(--dark-3); cursor: pointer;
+    }
+    .projet-card-img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .projet-card:hover .projet-card-img { transform: scale(1.05); }
+    .projet-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.1) 60%, transparent 100%);
+      padding: 28px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .projet-tag {
+      display: inline-block; background: var(--gold); color: var(--dark);
+      font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 10px; margin-bottom: 10px; align-self: flex-start;
+    }
+    .projet-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 700; text-transform: uppercase;
+      color: var(--white); letter-spacing: 1px;
+    }
+    .projet-loc { font-size: 13px; color: rgba(245,240,232,0.5); margin-top: 4px; }
+
+    /* ─── CTA BAND ─── */
+    #cta-band { background: var(--gold); padding: 60px 0; }
+    .cta-band-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+    }
+    .cta-band-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      color: var(--dark); letter-spacing: 1px; line-height: 1.1;
+    }
+    .cta-band-text p { font-size: 16px; color: rgba(13,13,13,0.65); margin-top: 8px; font-weight: 300; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--dark); color: var(--gold);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%);
+      transition: background var(--transition);
+      white-space: nowrap;
+    }
+    .btn-dark:hover { background: #1C1C1C; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--dark); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 20px; background: var(--dark-3);
+      border: 1px solid rgba(200,164,86,0.1);
+      transition: border-color var(--transition);
+    }
+    .contact-item:hover { border-color: rgba(200,164,86,0.3); }
+    .contact-item-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(200,164,86,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-item-icon svg { width: 20px; height: 20px; fill: var(--gold); }
+    .contact-item-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .contact-item-value { font-size: 14px; color: var(--light); line-height: 1.6; }
+    .contact-item-value a { color: var(--light); text-decoration: none; transition: color var(--transition); }
+    .contact-item-value a:hover { color: var(--gold); }
+    .contact-map {
+      background: var(--dark-3); border: 1px solid rgba(200,164,86,0.1);
+      height: 180px; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px; color: var(--grey);
+    }
+    .contact-map a {
+      font-size: 12px; color: var(--gold); text-decoration: none;
+      letter-spacing: 1px; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .contact-map a:hover { color: var(--gold-light); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--dark-3);
+      border: 1px solid rgba(200,164,86,0.15);
+      color: var(--light); padding: 14px 18px;
+      font-size: 14px; font-family: 'Barlow', sans-serif;
+      outline: none; width: 100%;
+      transition: border-color var(--transition), background var(--transition);
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold); background: var(--dark-4);
+    }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    .form-group select option { background: var(--dark-3); color: var(--light); }
+    .form-submit {
+      background: var(--gold); color: var(--dark); border: none;
+      padding: 16px 40px;
+      font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer;
+      clip-path: polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%);
+      transition: background var(--transition), transform var(--transition);
+      font-family: 'Barlow', sans-serif;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark-3);
+      border-top: 1px solid rgba(200,164,86,0.12);
+      padding: 80px 0 0;
+    }
+    .footer-grid {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-about p { font-size: 14px; line-height: 1.8; color: rgba(245,240,232,0.5); margin: 20px 0; font-weight: 300; }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(200,164,86,0.2);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--grey);
+      transition: all var(--transition);
+    }
+    .footer-social:hover { border-color: var(--gold); color: var(--gold); background: rgba(200,164,86,0.08); }
+    .footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 24px;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(200,164,86,0.15);
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 14px; color: rgba(245,240,232,0.5);
+      text-decoration: none;
+      transition: color var(--transition), padding-left var(--transition);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-col ul li a::before { content: '›'; font-size: 14px; color: var(--gold); opacity: 0; transition: opacity var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
+    .footer-col ul li a:hover::before { opacity: 1; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .footer-contact-item svg { width: 16px; height: 16px; fill: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .footer-contact-item span { font-size: 13px; color: rgba(245,240,232,0.5); line-height: 1.5; }
+    .footer-contact-item a { color: rgba(245,240,232,0.5); text-decoration: none; transition: color var(--transition); }
+    .footer-contact-item a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(200,164,86,0.08);
+      padding: 24px;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(245,240,232,0.35); }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* ─── SCROLL TOP ─── */
+    #scroll-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 48px; height: 48px; background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; transform: translateY(20px);
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 900;
+      clip-path: polygon(0 20%, 80% 0, 100% 20%, 100% 100%, 0 100%);
+    }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+    #scroll-top svg { width: 20px; height: 20px; fill: var(--dark); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-cards { flex-direction: row; flex-wrap: wrap; }
+      .hero-card { flex: 1; min-width: 240px; }
+      .about-grid, .expertise-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-content { padding-left: 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .projets-grid { grid-template-columns: 1fr; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: rgba(13,13,13,0.98);
+        padding: 24px; gap: 20px;
+      }
+      .nav-burger { display: flex; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
+    }
+    @media (max-width: 600px) {
+      :root { --topbar-h: 0px; }
+      .topbar { display: none; }
+      section { padding: 70px 0; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats-inner { grid-template-columns: 1fr 1fr; }
+      #hero { padding-top: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- TOP BAR -->
+<div class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Abidjan Cocody, Angré – Cité Penouel, LOT 58 ILOT 10
+      </div>
+      <div class="topbar-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:info@knt-groupe.com">info@knt-groupe.com</a>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <a href="tel:+2252722573015">+225 27 22 57 30 15</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">
+      <img src="assets/img/LOGO_KNT2-removebg-preview.png" alt="KNT Groupe" class="logo-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="logo-box" style="display:none">KNT</div>
+      <div>
+        <div class="logo-text">KNT GROUPE</div>
+        <span class="logo-sub">BTP &amp; Énergie</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+    <div class="nav-burger" id="nav-burger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-shape"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span></span>
+        Solutions BTP &amp; Énergie – Abidjan
+      </div>
+      <h1 class="hero-title">
+        Bâtir
+        <em>l'avenir</em>
+        de Côte d'Ivoire
+      </h1>
+      <p class="hero-desc">
+        Depuis 2024, KNT Groupe accompagne professionnels et collectivités dans leurs projets de construction, de gestion immobilière et d'électrification avec précision, rigueur et engagement.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Demander un devis
+          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+        <a href="#services" class="btn-outline">Nos services</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        </div>
+        <div>
+          <div class="hero-card-title">Travaux BTP</div>
+          <div class="hero-card-desc">Gros œuvre, rénovation, finitions intérieure &amp; extérieure selon les normes.</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <div>
+          <div class="hero-card-title">Gestion Immobilière</div>
+          <div class="hero-card-desc">Acquisition, location, vente &amp; gestion locative de biens meubles et immeubles.</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+        </div>
+        <div>
+          <div class="hero-card-title">Électrification</div>
+          <div class="hero-card-desc">Réseaux MT &amp; BT, lotissements, raccordements et extension de réseaux électriques.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="hero-stats">
+  <div class="hero-stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number">2024</div>
+      <div class="stat-unit">Année de création</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number">10+</div>
+      <div class="stat-unit">Spécialistes experts</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number">3</div>
+      <div class="stat-unit">Pôles d'activités</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number">100%</div>
+      <div class="stat-unit">Devis gratuits</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="assets/img/about/about-1.jpg" alt="KNT Groupe – Chantier BTP" class="about-img-main">
+        <div class="about-badge-float">
+          <div class="about-badge-number">2024</div>
+          <div class="about-badge-label">Depuis</div>
+        </div>
+      </div>
+      <div class="about-content reveal reveal-delay-1">
+        <div class="section-tag">À propos de KNT Groupe</div>
+        <h2 class="section-title">Une expertise pluridisciplinaire au service de vos projets</h2>
+        <p class="section-desc">
+          Entreprise ivoirienne dynamique fondée en 2024, KNT Groupe s'impose comme un acteur de référence dans le BTP et l'énergie électrique à Abidjan. Nous concevons, construisons et maintenons les infrastructures avec une équipe d'une dizaine de spécialistes engagés.
+        </p>
+        <ul class="about-list">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <div>
+              <strong>BTP &amp; Travaux Publics</strong>
+              Gros œuvre, rénovation intérieure et extérieure, avec respect strict des délais et normes de sécurité.
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <div>
+              <strong>Gestion &amp; Immobilier</strong>
+              Libérez-vous des contraintes administratives – nous maximisons votre rendement locatif.
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+            <div>
+              <strong>Électrification MT &amp; BT</strong>
+              Construction, extension et raccordement de réseaux électriques pour lotissements et industries.
+            </div>
+          </li>
+        </ul>
+        <a href="#contact" class="btn-primary">
+          Nous contacter
+          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-tag reveal">Nos Services</div>
+        <h2 class="section-title reveal reveal-delay-1">Des solutions sur mesure<br>pour chaque projet</h2>
+      </div>
+      <p class="section-desc reveal reveal-delay-2">De la conception à la livraison, KNT Groupe vous accompagne avec une exigence particulière sur la qualité, la sécurité et le respect des délais.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div style="overflow:hidden;">
+          <img src="assets/img/btp/1.jpg" alt="Bâtiment et Travaux Publics" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </div>
+          <h3>Bâtiment &amp; Travaux Publics</h3>
+          <p>Spécialisés dans le gros œuvre, la rénovation intérieure et extérieure, nous accompagnons les professionnels dans leurs chantiers avec une exigence particulière sur le respect des délais et des normes de sécurité les plus strictes.</p>
+          <a href="#contact" class="service-link">
+            Demander un devis
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div style="overflow:hidden;">
+          <img src="assets/img/about/about-3.jpg" alt="Gestion Immobilière" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3zm0 12.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          </div>
+          <h3>Gestion Immobilière</h3>
+          <p>Acquisition, location, vente et gestion de biens meubles et immeubles. Nous aidons les propriétaires à maximiser leur rendement locatif tout en les libérant des contraintes administratives et techniques du quotidien.</p>
+          <a href="#contact" class="service-link">
+            En savoir plus
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div style="overflow:hidden;">
+          <img src="assets/img/btp/5.jpg" alt="Travaux d'Électrification" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+          </div>
+          <h3>Travaux d'Électrification</h3>
+          <p>Experts en travaux d'électrification et extension de réseau Moyenne Tension (MT) et Basse Tension (BT). Lotissements, raccordements électriques, construction et extension d'infrastructures de distribution d'énergie.</p>
+          <a href="#contact" class="service-link">
+            Devis gratuit
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="container">
+    <div class="expertise-grid">
+      <div>
+        <div class="section-tag reveal">Notre Expertise</div>
+        <h2 class="section-title reveal reveal-delay-1">Pourquoi choisir<br>KNT Groupe ?</h2>
+        <div class="expertise-items">
+          <div class="expertise-item reveal">
+            <div class="expertise-item-num">01</div>
+            <div class="expertise-item-content">
+              <h4>Équipe de spécialistes</h4>
+              <p>Une dizaine d'experts pluridisciplinaires combinant génie civil, installation électrique et gestion immobilière.</p>
+            </div>
+          </div>
+          <div class="expertise-item reveal reveal-delay-1">
+            <div class="expertise-item-num">02</div>
+            <div class="expertise-item-content">
+              <h4>Respect des délais</h4>
+              <p>Notre engagement principal : livrer vos projets dans les temps, sans compromis sur la qualité.</p>
+            </div>
+          </div>
+          <div class="expertise-item reveal reveal-delay-2">
+            <div class="expertise-item-num">03</div>
+            <div class="expertise-item-content">
+              <h4>Solutions sur mesure</h4>
+              <p>De la conception à la livraison finale, chaque projet est traité avec une approche personnalisée et adaptée à vos besoins.</p>
+            </div>
+          </div>
+          <div class="expertise-item reveal reveal-delay-3">
+            <div class="expertise-item-num">04</div>
+            <div class="expertise-item-content">
+              <h4>Devis gratuit &amp; transparent</h4>
+              <p>Estimations précises et sans engagement, avec une totale transparence sur les coûts et délais.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="expertise-visual reveal reveal-delay-1">
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label">Travaux BTP <span>92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label">Électrification MT/BT <span>88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label">Gestion Immobilière <span>85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label">Extension de réseaux <span>90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="expertise-cert">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <div class="cert-text">
+            <h5>Qualité &amp; Conformité</h5>
+            <p>Tous nos travaux respectent les normes ivoiriennes et internationales en vigueur. Sécurité et fiabilité garanties.</p>
+          </div>
+        </div>
+        <div class="expertise-cert">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </div>
+          <div class="cert-text">
+            <h5>Accompagnement complet</h5>
+            <p>KNT Groupe vous accompagne de la phase étude jusqu'à la réception définitive de vos ouvrages.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="container">
+    <div class="projets-header">
+      <div>
+        <div class="section-tag reveal">Nos Réalisations</div>
+        <h2 class="section-title reveal reveal-delay-1">Projets représentatifs</h2>
+      </div>
+      <div class="projet-filters reveal reveal-delay-2">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="btp">BTP</button>
+        <button class="filter-btn" data-filter="elec">Électrification</button>
+        <button class="filter-btn" data-filter="immo">Immobilier</button>
+      </div>
+    </div>
+    <div class="projets-grid">
+      <div class="projet-card reveal" data-cat="btp">
+        <img src="assets/img/btp/2.jpg" alt="Construction Résidentielle" class="projet-card-img">
+        <div class="projet-overlay">
+          <span class="projet-tag">BTP</span>
+          <div class="projet-name">Construction Résidentielle</div>
+          <div class="projet-loc">Cocody, Abidjan</div>
+        </div>
+      </div>
+      <div class="projet-card reveal reveal-delay-1" data-cat="elec">
+        <img src="assets/img/btp/6.jpg" alt="Extension Réseau BT" class="projet-card-img">
+        <div class="projet-overlay">
+          <span class="projet-tag">Électrification</span>
+          <div class="projet-name">Extension Réseau BT</div>
+          <div class="projet-loc">Yopougon, Abidjan</div>
+        </div>
+      </div>
+      <div class="projet-card reveal reveal-delay-2" data-cat="immo">
+        <img src="assets/img/about/about-4.jpg" alt="Gestion Locative" class="projet-card-img">
+        <div class="projet-overlay">
+          <span class="projet-tag">Immobilier</span>
+          <div class="projet-name">Gestion Locative</div>
+          <div class="projet-loc">Plateau, Abidjan</div>
+        </div>
+      </div>
+      <div class="projet-card reveal reveal-delay-3" data-cat="elec">
+        <img src="assets/img/btp/7.jpg" alt="Raccordement Lotissement" class="projet-card-img">
+        <div class="projet-overlay">
+          <span class="projet-tag">Électrification MT</span>
+          <div class="projet-name">Raccordement Lotissement</div>
+          <div class="projet-loc">Songon, Abidjan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div id="cta-band">
+  <div class="cta-band-inner">
+    <div class="cta-band-text">
+      <h2>Obtenez votre devis gratuit dès aujourd'hui</h2>
+      <p>Experts en BTP, électrification et immobilier – discutons de votre projet sans engagement.</p>
+    </div>
+    <a href="#contact" class="btn-dark">
+      Démarrer votre projet
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="var(--gold)"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="section-tag reveal" style="justify-content:center">Contact</div>
+      <h2 class="section-title reveal reveal-delay-1">Parlons de votre projet</h2>
+      <p class="section-desc reveal reveal-delay-2" style="margin:0 auto;">Notre équipe est disponible pour répondre à toutes vos questions et vous proposer une solution adaptée à vos besoins.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Adresse</div>
+            <div class="contact-item-value">Abidjan Cocody Angré, Cité Penouel<br>Derrière le CHU – LOT 58 ILOT 10<br>04 BPM 1472 ABIDJAN 04</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Téléphone</div>
+            <div class="contact-item-value"><a href="tel:+2252722573015">+225 27 22 57 30 15</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value"><a href="mailto:info@knt-groupe.com">info@knt-groupe.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Disponibilité</div>
+            <div class="contact-item-value">Lundi – Vendredi : 8h00 – 18h00<br>Samedi : 9h00 – 14h00</div>
+          </div>
+        </div>
+        <div class="contact-map">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="rgba(200,164,86,0.3)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <a href="https://maps.app.goo.gl/GB8twgGxQRCtECnq6" target="_blank" rel="noopener">Voir sur Google Maps →</a>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Prénom &amp; Nom</label>
+            <input type="text" id="f-name" placeholder="Jean Kouassi">
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" placeholder="votre@email.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-tel">Téléphone</label>
+            <input type="tel" id="f-tel" placeholder="+225 07 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label for="f-type">Type de projet</label>
+            <select id="f-type">
+              <option value="">Sélectionnez…</option>
+              <option>Travaux BTP</option>
+              <option>Gestion immobilière</option>
+              <option>Vente / Acquisition de bien</option>
+              <option>Travaux d'électrification</option>
+              <option>Extension de réseau</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Description du projet</label>
+          <textarea id="f-msg" placeholder="Décrivez votre projet, la localisation, le délai souhaité…"></textarea>
+        </div>
+        <button class="form-submit" type="button">Envoyer ma demande →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about">
+      <a href="#hero" class="logo" style="margin-bottom:4px; display:inline-flex;">
+        <img src="assets/img/LOGO_KNT2-removebg-preview.png" alt="KNT Groupe" class="logo-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-box" style="display:none">KNT</div>
+        <div style="margin-left:12px;">
+          <div class="logo-text">KNT GROUPE</div>
+          <span class="logo-sub">BTP &amp; Énergie</span>
+        </div>
+      </a>
+      <p>Entreprise ivoirienne spécialisée dans le BTP, l'énergie électrique et la gestion immobilière. Nous accompagnons nos clients de la conception à la livraison avec précision et rigueur.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" title="Facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="footer-social" title="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:info@knt-groupe.com" class="footer-social" title="Email" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Activités</h4>
+      <ul>
+        <li><a href="#services">Travaux BTP</a></li>
+        <li><a href="#services">Gestion immobilière</a></li>
+        <li><a href="#services">Vente de biens immobiliers</a></li>
+        <li><a href="#services">Travaux d'électrification</a></li>
+        <li><a href="#services">Extension de réseaux MT/BT</a></li>
+        <li><a href="#contact">Devis gratuit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Coordonnées</h4>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <span>Abidjan Cocody Angré, Cité Penouel – LOT 58 ILOT 10<br>04 BPM 1472 ABIDJAN 04</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span><a href="tel:+2252722573015">+225 27 22 57 30 15</a></span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span><a href="mailto:info@knt-groupe.com">info@knt-groupe.com</a></span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024–2026 KNT Groupe. Tous droits réservés.</p>
+    <p>Conçu avec rigueur · Abidjan, Côte d'Ivoire</p>
+  </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+  <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</div>
+
+<script>
+(function() {
+  /* ── Custom cursor ── */
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+  (function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a, button, .service-card, .hero-card, .projet-card').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      cursor.style.width  = '20px'; cursor.style.height = '20px';
+      ring.style.width    = '56px'; ring.style.height   = '56px';
+    });
+    el.addEventListener('mouseleave', function() {
+      cursor.style.width  = '12px'; cursor.style.height = '12px';
+      ring.style.width    = '36px'; ring.style.height   = '36px';
+    });
+  });
+
+  /* ── Topbar hide on scroll ── */
+  var topbar  = document.getElementById('topbar');
+  var navbar  = document.getElementById('navbar');
+  var scrollTop = document.getElementById('scroll-top');
+  var topbarH = topbar ? topbar.offsetHeight : 40;
+
+  window.addEventListener('scroll', function() {
+    var sy = window.scrollY;
+    if (sy > topbarH) {
+      if (topbar) topbar.classList.add('hidden');
+      navbar.classList.add('scrolled');
+    } else {
+      if (topbar) topbar.classList.remove('hidden');
+      navbar.classList.remove('scrolled');
+    }
+    scrollTop.classList.toggle('visible', sy > 400);
+  });
+
+  /* ── Mobile menu ── */
+  var burger   = document.getElementById('nav-burger');
+  var navLinks = document.getElementById('nav-links');
+  burger.addEventListener('click', function() {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      burger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  /* ── Reveal on scroll ── */
+  var reveals = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el) { io.observe(el); });
+
+  /* ── Skill bars ── */
+  var barIO = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(function(bar) {
+          var w = bar.getAttribute('data-width');
+          if (w) bar.style.width = w + '%';
+        });
+        barIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.expertise-visual').forEach(function(el) { barIO.observe(el); });
+
+  /* ── Project filters ── */
+  document.querySelectorAll('.filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.projet-card').forEach(function(card) {
+        if (filter === 'all' || card.getAttribute('data-cat') === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  /* ── Smooth anchors ── */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = navbar.offsetHeight + 8;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
