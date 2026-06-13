@@ -39,6 +39,14 @@
 		.about__two-right img { width: 100%; height: 520px; object-fit: cover; }
 		/* ── Portfolio images uniform height ── */
 		.portfolio__two-item img { width: 100%; height: 320px; object-fit: cover; display: block; }
+		/* ── Video hero slide ── */
+		.banner__two-area-video { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+		.banner__two-area-video video { width: 100%; height: 100%; object-fit: cover; }
+		.banner__two-area-video::after { content: ''; position: absolute; inset: 0; background: rgba(10,20,40,.55); z-index: 1; }
+		/* ── DG portrait in hero ── */
+		.hero-dg-portrait { position: relative; z-index: 2; }
+		.hero-dg-portrait img { width: 100%; max-width: 420px; height: 520px; object-fit: cover; object-position: top center; border-radius: 12px; box-shadow: 0 24px 60px rgba(0,0,0,.5); display: block; margin-left: auto; }
+		@media(max-width:991px){ .hero-dg-portrait { display: none; } }
 	</style>
 </head>
 
@@ -217,7 +225,7 @@
     <div class="banner__two swiper slide_three">
         <div class="swiper-wrapper">
             <div class="banner__two-area swiper-slide">
-                <div class="banner__two-area-image" style="background-image: url('assets/img/btp/1.jpg');"></div>
+                <div class="banner__two-area-image" style="background-image: url('assets/img/KNT/work0.jpg');"></div>
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12">
@@ -269,6 +277,34 @@
                     </div>
                 </div>
             </div>
+            <!-- Slide DG — vidéo fond + portrait -->
+            <div class="banner__two-area swiper-slide">
+                <div class="banner__two-area-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/img/KNT/dg.MOV" type="video/mp4">
+                    </video>
+                </div>
+                <div class="container" style="position:relative;z-index:2;">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 col-xl-6">
+                            <div class="banner__two-content">
+                                <span class="subtitle" data-animation="fadeInUp" data-delay=".3s">Direction Générale</span>
+                                <h2 data-animation="fadeInUp" data-delay=".6s">Vision, leadership</h2>
+                                <h1 data-animation="fadeInUp" data-delay=".9s">et<br>excellence</h1>
+                                <p data-animation="fadeInUp" data-delay="1s">À la tête de KNT Groupe, notre Directeur Général incarne une vision ambitieuse : faire de notre entreprise un acteur incontournable du développement de la Côte d'Ivoire.</p>
+                                <div class="item_bounce mt-35">
+                                    <a class="build_button" href="about.html" data-animation="fadeInUp" data-delay="1.2s">Notre vision<i class="flaticon-right-up"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-xl-6 d-none d-lg-block">
+                            <div class="hero-dg-portrait" data-animation="fadeInRight" data-delay=".6s">
+                                <img src="assets/img/KNT/dg.JPG" alt="Directeur Général KNT Groupe">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="banner__two-slide">
@@ -290,6 +326,10 @@
                                     <div class="banner__two-slide-area-thumb-item swiper-slide">
                                         <img src="assets/img/btp/3.jpg" alt="Électrification">
                                         <h6>Électrification MT/BT</h6>
+                                    </div>
+                                    <div class="banner__two-slide-area-thumb-item swiper-slide">
+                                        <img src="assets/img/KNT/dg.JPG" alt="Directeur Général KNT">
+                                        <h6>Direction Générale</h6>
                                     </div>
                                 </div>
                             </div>
@@ -427,7 +467,7 @@
                 <div class="col-lg-7">
                     <div class="portfolio__two-right">
                         <div class="portfolio__two-item card_sticky" style="--card-top: 100px;">
-                            <img src="assets/img/btp/4.jpg" alt="Construction résidentielle – Cocody">
+                            <img src="assets/img/KNT/house out.JPG" alt="Réalisation extérieure – KNT Groupe">
                             <div class="portfolio__two-item-content">
                                 <span>BTP</span>
                                 <h4><a href="portfolio-details.html">Construction résidentielle</a></h4>
@@ -435,26 +475,18 @@
                             </div>
                         </div>
                         <div class="portfolio__two-item mt-25 card_sticky" style="--card-top: 180px;">
-                            <img src="assets/img/btp/5.jpg" alt="Rénovation haut de gamme – Plateau">
+                            <img src="assets/img/KNT/in.JPG" alt="Aménagement intérieur – KNT Groupe">
                             <div class="portfolio__two-item-content">
-                                <span>Rénovation</span>
-                                <h4><a href="portfolio-details.html">Rénovation haut de gamme</a></h4>
+                                <span>Aménagement intérieur</span>
+                                <h4><a href="portfolio-details.html">Aménagement intérieur haut de gamme</a></h4>
                                 <a href="portfolio-details.html"><i class="flaticon-right-up"></i></a>
                             </div>
                         </div>
                         <div class="portfolio__two-item mt-25 card_sticky" style="--card-top: 260px;">
-                            <img src="assets/img/btp/6.jpg" alt="Électrification – Yopougon">
+                            <img src="assets/img/KNT/cour.JPG" alt="Aménagement de cour – KNT Groupe">
                             <div class="portfolio__two-item-content">
-                                <span>Électrification</span>
-                                <h4><a href="portfolio-details.html">Extension réseau BT – Yopougon</a></h4>
-                                <a href="portfolio-details.html"><i class="flaticon-right-up"></i></a>
-                            </div>
-                        </div>
-                        <div class="portfolio__two-item mt-25 card_sticky">
-                            <img src="assets/img/btp/7.jpg" alt="Raccordement lotissement – Songon">
-                            <div class="portfolio__two-item-content">
-                                <span>Électrification MT</span>
-                                <h4><a href="portfolio-details.html">Raccordement lotissement – Songon</a></h4>
+                                <span>Aménagement extérieur</span>
+                                <h4><a href="portfolio-details.html">Aménagement de cour et espaces verts</a></h4>
                                 <a href="portfolio-details.html"><i class="flaticon-right-up"></i></a>
                             </div>
                         </div>
